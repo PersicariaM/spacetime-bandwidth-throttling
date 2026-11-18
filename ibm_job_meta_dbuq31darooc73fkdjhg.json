@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-11-18T13:01:23.079177+00:00",
+  "backend_name": "ibm_fez",
+  "job_id": "dbuq31darooc73fkdjhg",
+  "shots": 4096,
+  "idle_time_ns": 2000,
+  "qubit_counts": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ]
+}
