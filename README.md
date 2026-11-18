@@ -1,4 +1,4 @@
-# \# Empirical Characterization of Multi-Qubit Entanglement Error Scaling and Experimental Lower Bounds on Spacetime Computational Bandwidth
+﻿# \# Empirical Characterization of Multi-Qubit Entanglement Error Scaling and Experimental Lower Bounds on Spacetime Computational Bandwidth
 
 # 
 
@@ -10,11 +10,11 @@
 
 # \## Overview
 
-# This repository contains the pre-registered research protocol, Qiskit execution scripts, raw IBM Quantum hardware measurement datasets, statistical analysis pipelines, and LaTeX manuscript for investigating non-linear multi-qubit Greenberger–Horne–Zeilinger (GHZ) entanglement error scaling on superconducting quantum processors (`ibm\_fez` and `ibm\_marrakesh`).
+# This repository contains the pre-registered research protocol, Qiskit execution scripts, raw IBM Quantum hardware measurement datasets, statistical analysis pipelines, and LaTeX manuscript for investigating non-linear multi-qubit Greenberger?밐orne?밵eilinger (GHZ) entanglement error scaling on superconducting quantum processors (`ibm\_fez` and `ibm\_marrakesh`).
 
 # 
 
-# Using a Site Reliability Engineering (SRE) cascading-failure framework combined with Carr–Purcell–Meiboom–Gill (CPMG) dynamical decoupling and real-time Matrix Product State (MPS) digital twins, we demonstrate:
+# Using a Site Reliability Engineering (SRE) cascading-failure framework combined with Carr?밣urcell?밠eiboom?밎ill (CPMG) dynamical decoupling and real-time Matrix Product State (MPS) digital twins, we demonstrate:
 
 # 1\. \*\*Statistically Significant Excess Entanglement Residuals:\*\* Pooled across both 156-qubit Heron r2 processors ($n=16$ scaling points, $N \\in \[2, 24]$), hardware GHZ decoherence exceeds calibrated digital-twin predictions ($t = 5.5120$, one-sided $p = 2.9846 \\times 10^{-5}$, $4.01\\sigma$), with strong cross-chip reproducibility ($r = 0.9082$ for differential error, $r = 0.8574$ for residuals).
 
@@ -62,5 +62,6 @@
 
 # \## Author
 
-# \*\*Jaeyeun Moon\*\* — Independent Quantum SRE \& Cloud Infrastructure Research
+# \*\*Jaeyeun Moon\*\* ??Independent Quantum SRE \& Cloud Infrastructure Research
+
 
