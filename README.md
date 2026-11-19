@@ -1,67 +1,54 @@
-﻿# \# Empirical Characterization of Multi-Qubit Entanglement Error Scaling and Experimental Lower Bounds on Spacetime Computational Bandwidth
+﻿# Spacetime Computational Bandwidth Limits & Non-Markovian Decoherence Scaling on Superconducting QPUs
 
-# 
+[![DOI (Latest)](https://zenodo.org/badge/DOI/10.5281/zenodo.24345477.svg)](https://doi.org/10.5281/zenodo.24345477)
+[![DOI (v2.0.0)](https://zenodo.org/badge/DOI/10.5281/zenodo.24358228.svg)](https://doi.org/10.5281/zenodo.24358228)
+[![DOI (v1.0.0)](https://zenodo.org/badge/DOI/10.5281/zenodo.24345478.svg)](https://doi.org/10.5281/zenodo.24345478)
 
-# \[!\[Pre-registration SHA-256](https://img.shields.io/badge/Pre--registration-SHA256\_Verified-blue)](#pre-registration--integrity)
+An empirical quantum computing and Site Reliability Engineering (SRE) research project investigating whether physical spacetime enforces a finite entanglement processing bandwidth ceiling ($B_{\max}$), and characterizing multi-qubit decoherence scaling up to **$N = 52$ entangled qubits** on IBM Heron r2 superconducting quantum processors (`ibm_fez`, `ibm_marrakesh`, and `ibm_kingston`).
 
-# \[!\[Hardware](https://img.shields.io/badge/IBM\_Quantum-Heron\_r2\_(156q)-purple)](#experimental-datasets)
+* **Author:** Jaeyeun Moon (Independent Quantum SRE & Cloud Infrastructure Researcher)
+* **Pre-Registration SHA-256 (`theory_v1.md`):** `1C24A6371721543A631272826D64D20570EE249400849E476C300E1C84FF0B45`
+* **Manuscript PDF:** [`paper/main.pdf`](paper/main.pdf)
 
-# 
+---
 
-# \## Overview
+## Key Empirical Findings (v1.0.0 $\rightarrow$ v2.0.0)
 
-# This repository contains the pre-registered research protocol, Qiskit execution scripts, raw IBM Quantum hardware measurement datasets, statistical analysis pipelines, and LaTeX manuscript for investigating non-linear multi-qubit Greenberger?밐orne?밵eilinger (GHZ) entanglement error scaling on superconducting quantum processors (`ibm\_fez` and `ibm\_marrakesh`).
+| Release | Qubit Range ($N$) | QPU Backends (156q Heron r2) | Protocol & Probe | Key Empirical Result & Statistical Significance |
+|---|---|---|---|---|
+| **v1.0.0** ([DOI](https://doi.org/10.5281/zenodo.24345478)) | $2 \dots 24$ | `ibm_fez`, `ibm_marrakesh` | Direct Full-String Readout $P(0^N)+P(1^N)$ | Unrefocused multi-qubit crosstalk excess ($+4.01\sigma$, $p = 2.98 \times 10^{-5}$); quadratic model ($R^2 = 0.9809$) favored over throttling cliff; initial lower bound **$B_{\max} \ge 44.86\text{ qubits}$**. |
+| **v2.0.0** ([DOI](https://doi.org/10.5281/zenodo.24358228)) | $16 \dots 52$ | `ibm_fez`, `ibm_kingston` | Zero-SWAP BFS Tree + GHZ Loschmidt Echo + Symmetric CPMG $[X, X]$ | **$59.91\%$** (`ibm_fez`) & **$59.68\%$** (`ibm_kingston`) survival at $N=52$ (**Pearson $r = 0.9630$, $p = 2.008 \times 10^{-6}$**); refutes $44.86\text{ q}$ threshold; elevates bound to **$B_{\max} \ge 195.89\text{ qubits}$**; confirms CPMG non-Markovian suppression at **$6.36\sigma$** ($t = -11.3599$, $p = 1.987 \times 10^{-10}$). |
 
-# 
+---
 
-# Using a Site Reliability Engineering (SRE) cascading-failure framework combined with Carr?밣urcell?밠eiboom?밎ill (CPMG) dynamical decoupling and real-time Matrix Product State (MPS) digital twins, we demonstrate:
+## Repository Structure
 
-# 1\. \*\*Statistically Significant Excess Entanglement Residuals:\*\* Pooled across both 156-qubit Heron r2 processors ($n=16$ scaling points, $N \\in \[2, 24]$), hardware GHZ decoherence exceeds calibrated digital-twin predictions ($t = 5.5120$, one-sided $p = 2.9846 \\times 10^{-5}$, $4.01\\sigma$), with strong cross-chip reproducibility ($r = 0.9082$ for differential error, $r = 0.8574$ for residuals).
+```text
+├── theory_v1.md                      # Pre-registered hypothesis & falsification criteria
+├── run_v2_high_qubit_qpu.py          # v2.0 0-SWAP BFS tree & GHZ Loschmidt Echo QPU runner
+├── run_v2_digital_twin_mps.py        # Live-calibrated 1:1 Qiskit Aer MPS digital twin simulator
+├── analyze_v2_cross_chip.py          # Cross-chip statistical testing (6.36σ) & 300 DPI plotting
+├── data/
+│   └── v2_experiments/               # QPU manifests, calibration snapshots, merged CSVs & JSON summary
+└── paper/
+    ├── main.pdf                      # Compiled v2.0.0 academic manuscript
+    └── figures/                      # 300 DPI publication figures (v2_fig1, v2_fig2)
+```
 
-# 2\. \*\*SRE Quadratic Cascading Error Model:\*\* Model selection via AIC/BIC favors a quadratic cascading-failure model ($R^2 = 0.98087$, $\\text{AIC} = -54.05$ on `ibm\_fez`) over exponential divergence in the $N \\le 24$ regime.
+---
 
-# 3\. \*\*Experimental Lower Bound on Spacetime Computational Bandwidth:\*\* In accordance with pre-registered falsification criteria, the upper envelope establishes an empirical lower bound of \*\*$B\_{\\max} \\ge 44.86\\text{ entangled qubits}$\*\* for $500\\text{ ns}$ coherence windows.
+## Citation
 
-# 
+If you use this dataset, simulation pipeline, or manuscript, please cite:
 
-# \## Pre-Registration \& Integrity
-
-# To prevent confirmation bias, the theoretical hypothesis and falsification thresholds were committed prior to hardware execution (`theory\_v1.md`):
-
-# \- \*\*SHA-256 Hash:\*\* `1C24A6371721543A631272826D64D20570EE249400849E476C300E1C84FF0B45`
-
-# 
-
-# \## Experimental Datasets
-
-# | Processor | Architecture | Job ID | Qubit Range ($N$) | Shots | Dataset File |
-
-# | :--- | :--- | :--- | :---: | :---: | :--- |
-
-# | `ibm\_fez` | Heron r2 (156q) | `dbuq31darooc73fkdjhg` | $2 \\dots 16$ | 4,096 | `ibm\_qpu\_results\_ibm\_fez\_dbuq31darooc73fkdjhg.csv` |
-
-# | `ibm\_fez` | Heron r2 (156q) | `dbuq6a7f8rhs73bmom30` | $2 \\dots 24$ | 4,096 | `calibrated\_results\_ibm\_fez\_dbuq6a7f8rhs73bmom30.csv` |
-
-# | `ibm\_marrakesh` | Heron r2 (156q) | `dbur4uv82tmc73dtumr0` | $2 \\dots 24$ | 4,096 | `calibrated\_results\_ibm\_marrakesh\_dbur4uv82tmc73dtumr0.csv` |
-
-# 
-
-# \## Repository Structure
-
-# \- `theory\_v1.md`: Pre-registered theoretical framework and falsification criteria.
-
-# \- `baseline\_sim.py`: Qiskit Aer MPS baseline noise simulation script.
-
-# \- `run\_ibm\_qpu.py` / `run\_calibrated\_experiment.py` / `run\_marrakesh\_replication.py`: Hardware execution scripts with CPMG dynamical decoupling.
-
-# \- `analyze\_residuals.py` / `analyze\_cross\_chip.py`: Statistical testing ($t$-test, Spearman $\\rho$, Pearson $r$), AIC/BIC model selection, and figure generation.
-
-# \- `paper/main.pdf`: Full manuscript PDF.
-
-# 
-
-# \## Author
-
-# \*\*Jaeyeun Moon\*\* ??Independent Quantum SRE \& Cloud Infrastructure Research
-
-
+```bibtex
+@misc{moon2026spacetime_v2,
+  author       = {Moon, Jaeyeun},
+  title        = {Probing Spacetime Computational Bandwidth Limits and Non-Markovian Decoherence Suppression up to 52 Entangled Qubits on Superconducting Quantum Processors},
+  year         = {2026},
+  publisher    = {Zenodo},
+  version      = {v2.0.0},
+  doi          = {10.5281/zenodo.24358228},
+  url          = {https://doi.org/10.5281/zenodo.24358228}
+}
+```
