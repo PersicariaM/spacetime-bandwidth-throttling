@@ -1,0 +1,132 @@
+{
+  "timestamp": "20261121_203414",
+  "shots": 1024,
+  "jobs": [
+    {
+      "backend": "ibm_kingston",
+      "num_cycles": 2,
+      "job_id": "dc0o3e6q4uuc73a2suug",
+      "records": [
+        {
+          "depth_layers": 1,
+          "cpmg": false,
+          "cz_count": 119,
+          "x_count": 0,
+          "qpu_p0": 0.675781
+        },
+        {
+          "depth_layers": 1,
+          "cpmg": true,
+          "cz_count": 119,
+          "x_count": 48,
+          "qpu_p0": 0.358398
+        },
+        {
+          "depth_layers": 2,
+          "cpmg": false,
+          "cz_count": 119,
+          "x_count": 0,
+          "qpu_p0": 0.667969
+        },
+        {
+          "depth_layers": 2,
+          "cpmg": true,
+          "cz_count": 119,
+          "x_count": 96,
+          "qpu_p0": 0.220703
+        },
+        {
+          "depth_layers": 4,
+          "cpmg": false,
+          "cz_count": 119,
+          "x_count": 0,
+          "qpu_p0": 0.611328
+        },
+        {
+          "depth_layers": 4,
+          "cpmg": true,
+          "cz_count": 119,
+          "x_count": 192,
+          "qpu_p0": 0.081055
+        },
+        {
+          "depth_layers": 8,
+          "cpmg": false,
+          "cz_count": 119,
+          "x_count": 0,
+          "qpu_p0": 0.573242
+        },
+        {
+          "depth_layers": 8,
+          "cpmg": true,
+          "cz_count": 119,
+          "x_count": 384,
+          "qpu_p0": 0.006836
+        }
+      ]
+    },
+    {
+      "backend": "ibm_fez",
+      "num_cycles": 1,
+      "job_id": "dc0o3guq4uuc73a2sv2g",
+      "records": [
+        {
+          "depth_layers": 1,
+          "cpmg": false,
+          "cz_count": 93,
+          "x_count": 0,
+          "qpu_p0": 0.204102
+        },
+        {
+          "depth_layers": 1,
+          "cpmg": true,
+          "cz_count": 93,
+          "x_count": 48,
+          "qpu_p0": 0.303711
+        },
+        {
+          "depth_layers": 2,
+          "cpmg": false,
+          "cz_count": 93,
+          "x_count": 0,
+          "qpu_p0": 0.183594
+        },
+        {
+          "depth_layers": 2,
+          "cpmg": true,
+          "cz_count": 93,
+          "x_count": 96,
+          "qpu_p0": 0.114258
+        },
+        {
+          "depth_layers": 4,
+          "cpmg": false,
+          "cz_count": 93,
+          "x_count": 0,
+          "qpu_p0": 0.475586
+        },
+        {
+          "depth_layers": 4,
+          "cpmg": true,
+          "cz_count": 93,
+          "x_count": 192,
+          "qpu_p0": 0.018555
+        },
+        {
+          "depth_layers": 8,
+          "cpmg": false,
+          "cz_count": 93,
+          "x_count": 0,
+          "qpu_p0": 0.618164
+        },
+        {
+          "depth_layers": 8,
+          "cpmg": true,
+          "cz_count": 93,
+          "x_count": 384,
+          "qpu_p0": 0.009766
+        }
+      ]
+    }
+  ]
+}
