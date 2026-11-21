@@ -19,7 +19,6 @@ def build_24q_2cycle_dd_circuit(depth_layers: int, dd_mode: str, hold_ns: int = 
     qc.barrier()
 
     # 2. 홀드 구간 (총 지연 시간 hold_ns * depth_layers 동일 유지)
-    # 4펄스(tau - P1 - 2tau - P2 - 2tau - P3 - 2tau - P4 - tau = 8tau)
     tau = max(16, (hold_ns // 8) // 16 * 16)
     for _ in range(depth_layers):
         if dd_mode == "NONE":
@@ -57,12 +56,13 @@ def build_24q_2cycle_dd_circuit(depth_layers: int, dd_mode: str, hold_ns: int = 
 
 def main():
     parser = argparse.ArgumentParser(description="v3.2 XY4 vs CPMG-4 Hotfix Verification")
+    parser.add_argument("--backend", type=str, default="ibm_marrakesh")
     parser.add_argument("--mode", choices=["dry-run", "qpu"], default="dry-run")
     parser.add_argument("--shots", type=int, default=1024)
     args = parser.parse_args()
 
     service = QiskitRuntimeService(channel="ibm_cloud")
-    backend = service.backend("ibm_kingston")
+    backend = service.backend(args.backend)
     depths = [1, 2, 4, 8]
     modes = ["NONE", "CPMG4", "XY4"]
 
@@ -73,7 +73,7 @@ def main():
             isa_qc = transpile(raw_qc, backend=backend, optimization_level=1, seed_transpiler=42)
             circuits.append((d, m, isa_qc))
 
-    print("=== [ibm_kingston] 2-Cycle CPMG-4 vs XY4 ISA 검증 (총 12회로, seed=42) ===")
+    print(f"=== [{args.backend}] 2-Cycle CPMG-4 vs XY4 ISA 검증 (총 12회로, seed=42) ===")
     for d, m, isa_qc in circuits:
         ops = isa_qc.count_ops()
         print(f"  depth={d}, mode={m:5s} | cz={ops.get('cz', 0):3d}, x={ops.get('x', 0):3d}, rz={ops.get('rz', 0):3d}, delay={ops.get('delay', 0):3d}")
@@ -82,7 +82,7 @@ def main():
         print("\n[DRY-RUN 완료] QPU 할당량 소모 0.00. CPMG4와 XY4의 cz/x 물리 펄스 수가 동일한지 확인하세요.")
         return
 
-    print("\n[주의] IBM Open Plan 무료 할당량 약 1.0 RU가 소모됩니다.")
+    print(f"\n[주의] {args.backend}에서 IBM Open Plan 무료 할당량 약 0.1~0.2 RUs가 소모됩니다.")
     confirm = input("실제 QPU에 제출하려면 'SUBMIT_XY4_QPU'를 입력하세요: ").strip()
     if confirm != "SUBMIT_XY4_QPU":
         print("제출이 취소되었습니다.")
@@ -94,7 +94,7 @@ def main():
     isa_list = [c[2] for c in circuits]
     job = sampler.run(isa_list, shots=args.shots)
     job_id = job.job_id()
-    print(f"\n[제출 완료] ibm_kingston (XY4 Hotfix) -> Job ID: {job_id}")
+    print(f"\n[제출 완료] {args.backend} (XY4 Hotfix) -> Job ID: {job_id}")
     print("대기열 및 실행 완료를 기다리는 중...")
 
     result = job.result()
@@ -113,10 +113,10 @@ def main():
         })
         print(f"  depth={d}, mode={m:5s} -> P(|0^24>) = {p0:.4f}")
 
-    out_path = Path(f"data/v3_2_xy4_hotfix_{ts}.json")
+    out_path = Path(f"data/v3_2_xy4_hotfix_{args.backend}_{ts}.json")
     out_path.write_text(json.dumps({
         "timestamp": ts,
-        "backend": "ibm_kingston",
+        "backend": args.backend,
         "num_cycles": 2,
         "shots": args.shots,
         "job_id": job_id,

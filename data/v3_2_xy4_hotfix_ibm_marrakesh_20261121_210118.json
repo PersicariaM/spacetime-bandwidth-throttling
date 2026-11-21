@@ -1,0 +1,105 @@
+{
+  "timestamp": "20261121_210118",
+  "backend": "ibm_marrakesh",
+  "num_cycles": 2,
+  "shots": 1024,
+  "job_id": "dc0og4eq4uuc73a2ti5g",
+  "records": [
+    {
+      "depth_layers": 1,
+      "dd_mode": "NONE",
+      "cz_count": 119,
+      "x_count": 0,
+      "rz_count": 4,
+      "qpu_p0": 0.396484
+    },
+    {
+      "depth_layers": 1,
+      "dd_mode": "CPMG4",
+      "cz_count": 119,
+      "x_count": 96,
+      "rz_count": 4,
+      "qpu_p0": 0.245117
+    },
+    {
+      "depth_layers": 1,
+      "dd_mode": "XY4",
+      "cz_count": 119,
+      "x_count": 96,
+      "rz_count": 52,
+      "qpu_p0": 0.258789
+    },
+    {
+      "depth_layers": 2,
+      "dd_mode": "NONE",
+      "cz_count": 119,
+      "x_count": 0,
+      "rz_count": 4,
+      "qpu_p0": 0.379883
+    },
+    {
+      "depth_layers": 2,
+      "dd_mode": "CPMG4",
+      "cz_count": 119,
+      "x_count": 192,
+      "rz_count": 4,
+      "qpu_p0": 0.154297
+    },
+    {
+      "depth_layers": 2,
+      "dd_mode": "XY4",
+      "cz_count": 119,
+      "x_count": 192,
+      "rz_count": 100,
+      "qpu_p0": 0.169922
+    },
+    {
+      "depth_layers": 4,
+      "dd_mode": "NONE",
+      "cz_count": 119,
+      "x_count": 0,
+      "rz_count": 4,
+      "qpu_p0": 0.361328
+    },
+    {
+      "depth_layers": 4,
+      "dd_mode": "CPMG4",
+      "cz_count": 119,
+      "x_count": 384,
+      "rz_count": 4,
+      "qpu_p0": 0.070312
+    },
+    {
+      "depth_layers": 4,
+      "dd_mode": "XY4",
+      "cz_count": 119,
+      "x_count": 384,
+      "rz_count": 196,
+      "qpu_p0": 0.084961
+    },
+    {
+      "depth_layers": 8,
+      "dd_mode": "NONE",
+      "cz_count": 119,
+      "x_count": 0,
+      "rz_count": 4,
+      "qpu_p0": 0.313477
+    },
+    {
+      "depth_layers": 8,
+      "dd_mode": "CPMG4",
+      "cz_count": 119,
+      "x_count": 768,
+      "rz_count": 4,
+      "qpu_p0": 0.023438
+    },
+    {
+      "depth_layers": 8,
+      "dd_mode": "XY4",
+      "cz_count": 119,
+      "x_count": 768,
+      "rz_count": 388,
+      "qpu_p0": 0.045898
+    }
+  ]
+}
